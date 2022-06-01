@@ -35,6 +35,10 @@ public abstract class Square {
     public abstract Piece getPiece();
 
     public static final class EmptySquare extends Square {
+        @Override
+        public String toString() {
+            return "-";
+        }
         private EmptySquare(final int coordinate) {
             super(coordinate);
         }
@@ -51,6 +55,8 @@ public abstract class Square {
 
     }
 
+
+
     public static final class OccupiedSquare extends Square {
 
         private final Piece piece;
@@ -58,6 +64,10 @@ public abstract class Square {
         private OccupiedSquare(int coordinate, final Piece piece) {
             super(coordinate);
             this.piece = piece;
+        }
+        @Override
+        public String toString() {
+            return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase() : getPiece().toString();
         }
 
         @Override
